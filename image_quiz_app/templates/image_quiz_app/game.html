@@ -1,0 +1,61 @@
+{% load static %}
+{% load built_in_tag4image %}
+
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Game</title>
+</head>
+
+<body>
+    <h1>Game Start!</h1>
+    <br>
+    <!-- 回答した場合 -->
+    {% if your_ans　!= start_your_ans %}
+        <p>Your answer is '{{your_ans}}:{{your_ans_name}}'.</p>        
+        <!-- 回答した場合、正解か否かを表示 -->
+        {% if result == 1 %}
+            <p>Your answer is <b>Correct !!!</b></p>
+        {% else %}
+            <p>Your answer is <b>Wrong ...</b></p>
+        {% endif %}
+        <br>
+    {% else %}
+    {% endif %}
+    
+    <!-- 正解を表示する場合 -->
+    {% if open_answer_flg == 1 %}
+        <p>The answer is <b>'{{answer}}'</b>.</p>
+        <img src={% static given_img_file_path %}>
+        
+        <br>
+    {% else %}
+    {% endif %}
+    
+    <p>---------------------------------------------------------</p>
+    {% for list_model_result in list_result_of_models %}
+        {% for text_pred in list_model_result %}
+            <p>{{text_pred}}</p>
+        {% endfor %}
+        <p>---------------------------------------------------------</p>
+    {% endfor %}
+    
+    <br>
+    
+    <!-- 正解を表示する場合 -->
+    {% if open_answer_flg == 1 %}
+        <a href={{ start_your_ans|file_of_one_level_folder }}>Start game again</a>
+    {% else %}
+        <p><b>Which of the following is the target?</b></p>
+        {% for no , label in choice_labels %}
+            <a href={{ no|file_of_one_level_folder }}>{{no}} : {{label}}</a>
+            <br>
+        {% endfor %}
+    {% endif %}
+    <!-- 
+    <p>Answer</p>
+    <p>{{answer}}</p> 
+    -->
+    
+</body>

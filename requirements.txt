@@ -1,0 +1,13 @@
+Django==2.1.5
+Jinja2==2.10
+Keras==2.2.4
+Keras-Applications==1.0.6
+Keras-Preprocessing==1.0.5
+MarkupSafe==1.1.0
+numpy==1.15.4
+numpydoc==0.8.0
+opencv-python==3.4.5.20
+requests==2.21.0
+scipy==1.2.0
+tensorboard==1.12.2
+tensorflow==1.12.0
